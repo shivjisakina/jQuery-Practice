@@ -10,7 +10,7 @@ $(document).ready(function () {
             attack: 60,
             image: "assets/images/meredith.png",
             emenyHP: 24
-        }
+        },
 
         "Derek Shepherd": {
             name: "Derek Shepherd",
@@ -25,24 +25,52 @@ $(document).ready(function () {
     // GLOBAL VARIABLES
     // ===================================================================
 
-    // variable for the users player
+    // Variable for the users player
     var player;
 
-    // storing the other players in an array
+    // Storing the other players in an array
     var enemies = [];
 
-    // the enemy the user is playing against
+    // The enemy the user is playing against
     var enemy;
 
-    // how many turns there are/damage
+    // How many turns there are/damage
     var turns = 1;
 
-    // enemies that have been defeated in integers
+    // Enemies that have been defeated in integers
     var killed = 0;
 
+    // FUNCTIONS
+    // ===================================================================
 
+    // Rendering each character to the page in the characters section
+    var showCharacters = function (doctor, render) {
 
+        // How the card will appear in HTML
 
+        // Append all the information to charDiv
+        var charDiv = $("<div class='character' data-name='" + doctor.name + "'>");
+        var charName = $("<div class='character-name'>").text(doctor.name);
+        var charImage = $("<img alt='image' class='character-image'>").attr("src", doctor.image);
+        var charHP = $("<div class='character-HP'>").text(doctor.HP);
+
+        // Appending all of the information to charDiv
+        charDiv.append(charName).append(charImage).append(charHP);
+
+        // Rending it to the page
+        $(render).append(charDiv)
+
+    }
+
+    // Looping through doctors and rendering information using showCharacters funciton
+    var startGame = function () {
+
+        for (var i in doctors) {
+            showCharacters(doctors[i], "#characters-section")
+        }
+    }
+
+    startGame()
 
 
 
